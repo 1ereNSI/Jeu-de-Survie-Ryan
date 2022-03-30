@@ -1,1 +1,1 @@
-# Survival-Game---Duthe-Ryan
+# Jeu-de-Survie-Ryan
