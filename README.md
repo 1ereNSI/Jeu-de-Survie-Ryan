@@ -29,4 +29,3 @@ Exemple de création de jeu sous PyGame : https://youtu.be/ooITOxbYVTo
 - Ajout des collisions + correction des zones de collisions
 - Ajout jeu de tuiles pour la Maison
 - Création de la Carte Maison
--
