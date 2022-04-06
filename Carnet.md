@@ -29,3 +29,16 @@ Exemple de création de jeu sous PyGame : https://youtu.be/ooITOxbYVTo
 - Ajout des collisions + correction des zones de collisions
 - Ajout jeu de tuiles pour la Maison
 - Création de la Carte Maison
+
+## Commit 06 / 04 / 2022
+
+== Documentation == 
+
+Exemple de création de jeu sous PyGame : https://youtu.be/ooITOxbYVTo (vidéo finie) -> Code non copié-collé en une fois, écrit progressivement durant la vidéo  
+Seconde Partie : https://youtu.be/clcmhmpyYSc  
+
+== Code ==
+
+- Finalisation de la map house.tmx
+- Code pour rentrer & sortir de la maison
+- Correction des collisions
