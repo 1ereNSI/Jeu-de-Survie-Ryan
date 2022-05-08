@@ -42,3 +42,11 @@ Seconde Partie : https://youtu.be/clcmhmpyYSc
 - Finalisation de la map house.tmx
 - Code pour rentrer & sortir de la maison
 - Correction des collisions
+
+## Commit 08 / 05 / 2022 (absences + vacances)
+
+== Code ==
+
+- Apparition des premiers PNJ et de leurs dialogues
+- Création d'un semblant de Lore
+- Correction d'un bug de fichiers (pas trouvé de réelle solution), retour au dernier commit

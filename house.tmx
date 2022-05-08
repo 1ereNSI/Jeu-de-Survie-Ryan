@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="3">
  <tileset firstgid="1" source="Maison Tileset.tsx"/>
  <layer id="1" name="floor" width="25" height="25">
   <data encoding="csv">
@@ -30,6 +30,10 @@
 302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302,302
 </data>
  </layer>
+ <objectgroup id="6" name="Calque d'Objets 1">
+  <object id="1" name="exit_house" x="208.93" y="368.49" width="29.3361" height="12.1637"/>
+  <object id="2" name="spawn_house" x="208.215" y="336.292" width="30.7671" height="15.0258"/>
+ </objectgroup>
  <layer id="2" name="walls" width="25" height="25">
   <data encoding="csv">
 243,277,278,276,277,278,276,277,278,276,277,278,276,277,278,276,277,278,276,277,278,276,277,278,243,
