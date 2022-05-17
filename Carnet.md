@@ -50,3 +50,18 @@ Seconde Partie : https://youtu.be/clcmhmpyYSc
 - Apparition des premiers PNJ et de leurs dialogues
 - Création d'un semblant de Lore
 - Correction d'un bug de fichiers (pas trouvé de réelle solution), retour au dernier commit
+
+# Commit 17/05/2022
+
+== Documentation == 
+
+Tuto Graven (fini) : https://youtu.be/clcmhmpyYSc
+
+== Code ==
+
+- Refonte de la gestion de cartes / changement de carte
+- Animation du Player
+- Apparition des PNJ et de leur dialogue (espace pour leur parler)
+- Apparition des 10 zombies sur une troisième map (au nord)
+- Fonction pour faire des dégâts aux zombies faites
+- Correction graphique : on passe maintenant derrière les arbres / la maison

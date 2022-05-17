@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="3">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="34">
  <tileset firstgid="1" source="Maison Tileset.tsx"/>
  <layer id="1" name="floor" width="25" height="25">
   <data encoding="csv">
@@ -33,6 +33,32 @@
  <objectgroup id="6" name="Calque d'Objets 1">
   <object id="1" name="exit_house" x="208.93" y="368.49" width="29.3361" height="12.1637"/>
   <object id="2" name="spawn_house" x="208.215" y="336.292" width="30.7671" height="15.0258"/>
+  <object id="7" name="robin_spawn" x="142.387" y="65.8273" width="16.4568" height="14.3103"/>
+  <object id="8" type="collision" x="301.947" y="220.378" width="29.3361" height="29.3361"/>
+  <object id="9" type="collision" x="255.081" y="221.452" width="29.3361" height="29.3361"/>
+  <object id="10" type="collision" x="349.529" y="220.736" width="29.3361" height="29.3361"/>
+  <object id="11" type="collision" x="350.244" y="285.132" width="29.3361" height="29.3361"/>
+  <object id="12" type="collision" x="301.589" y="284.417" width="29.3361" height="29.3361"/>
+  <object id="13" type="collision" x="252.934" y="283.701" width="29.3361" height="29.3361"/>
+  <object id="14" type="collision" x="254.365" y="348.098" width="29.3361" height="29.3361"/>
+  <object id="15" type="collision" x="300.874" y="348.098" width="29.3361" height="29.3361"/>
+  <object id="16" type="collision" x="349.529" y="348.813" width="29.3361" height="29.3361"/>
+  <object id="17" type="collision" x="151.331" y="197.84" width="43.6464" height="183.172"/>
+  <object id="18" type="collision" x="125.573" y="237.908" width="16.4568" height="95.8789"/>
+  <object id="19" type="collision" x="21.1077" y="238.266" width="16.4568" height="95.8789"/>
+  <object id="21" type="collision" x="20.3922" y="173.87" width="16.4568" height="30.7671"/>
+  <object id="22" type="collision" x="21.1077" y="124.857" width="16.4568" height="30.7671"/>
+  <object id="23" type="collision" x="20.3922" y="76.2023" width="16.4568" height="30.7671"/>
+  <object id="24" type="collision" x="16.8146" y="340.943" width="26.474" height="37.9222"/>
+  <object id="25" type="collision" x="63.323" y="338.796" width="26.474" height="37.9222"/>
+  <object id="26" type="collision" x="111.262" y="340.943" width="26.474" height="37.9222"/>
+  <object id="27" type="collision" x="28.9783" y="20.3922" width="30.7671" height="22.1809"/>
+  <object id="28" type="collision" x="77.6333" y="20.3922" width="30.7671" height="22.1809"/>
+  <object id="29" type="collision" x="124.857" y="23.2542" width="30.7671" height="22.1809"/>
+  <object id="30" type="collision" x="172.797" y="22.5387" width="30.7671" height="22.1809"/>
+  <object id="31" type="collision" x="222.167" y="21.1077" width="30.7671" height="22.1809"/>
+  <object id="32" type="collision" x="301.589" y="73.3402" width="30.7671" height="32.9136"/>
+  <object id="33" type="collision" x="300.874" y="28.9783" width="30.7671" height="31.4826"/>
  </objectgroup>
  <layer id="2" name="walls" width="25" height="25">
   <data encoding="csv">
