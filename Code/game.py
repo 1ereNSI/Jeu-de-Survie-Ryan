@@ -21,7 +21,7 @@ class Game:
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
         self.dialog_box = DialogBox()
-
+        self.health = MapManager.attack_zombie
 
     def handle_input(self):
         pressed = pygame.key.get_pressed()
@@ -62,14 +62,13 @@ class Game:
                 self.player.move_left()
 
     def update(self):   
-        self.map_manager.update()        
+        self.map_manager.update()    
 
     def run(self):
         # Boucle du jeu
         fps = pygame.time.Clock()
-        running = True
 
-        while running:
+        while self.running:
             
             self.player.save_location()
             self.handle_input()
@@ -77,14 +76,20 @@ class Game:
             self.map_manager.draw()
             self.map_manager.all_monster.draw(self.screen)
             self.dialog_box.render(self.screen)
+            self.dialog_box.afficher_stats(self.screen, self.map_manager.player_health, self.map_manager.player_health_max, self.map_manager.points_player, self.map_manager.score, self.map_manager.score_max, self.map_manager.player_damage)
+            self.map_manager.check_zombie_damage()
             pygame.display.flip()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    self.running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         self.map_manager.check_npc_collisions(self.dialog_box)
+                    if event.key == pygame.K_a:
+                        self.map_manager.up_health()
+                    if event.key == pygame.K_b:
+                        self.map_manager.up_damage()
 
             fps.tick(60)
 

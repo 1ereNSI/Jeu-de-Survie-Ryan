@@ -1,8 +1,12 @@
 from dataclasses import dataclass
 from tokenize import Name
+from pip import main
+from animation import *
+from animation import AnimateSprite
 from player import NPC
 from player import *
 import pygame, pytmx, pyscroll
+from random import *
 
 @dataclass
 class Portal:
@@ -30,19 +34,31 @@ class MapManager:
         self.player = player
         self.current_map = "carte"
         self.all_monster = pygame.sprite.Group()
-        self.player_damage = 5
+        self.player_damage = 15
+        self.zombie_damage = 5
+        self.player_health_bonus = 0
+        self.player_health = 100
+        self.player_health_max = self.player_health
+        self.zombie_speed = 1
+        self.zombie_health_max = 150
+        self.clock = 0
+        self.points_compteur = 0
+        self.points_player = 0
+        self.score_max = 0
+        self.upgrade_compteur = 0
+        
 
         self.all_boss = []
 
-        self.boss = NPC("boss", nb_points = 1, damage=0.2, speed = 1)
-        self.boss1 = NPC("boss2", nb_points = 1, damage=0.2, speed = 1)
-        self.boss2 = NPC("boss2", nb_points = 1, damage=0.2, speed = 1)
-        self.boss3 = NPC("boss3", nb_points = 1, damage=0.2, speed = 1)
-        self.boss4 = NPC("boss4", nb_points = 1, damage=0.2, speed = 1)
-        self.boss5 = NPC("boss5", nb_points = 1, damage=0.2, speed = 1)
-        self.boss6 = NPC("boss6", nb_points = 1, damage=0.2, speed = 1)
-        self.boss7 = NPC("boss7", nb_points = 1, damage=0.2, speed = 1)
-        self.boss8 = NPC("boss8", nb_points = 1, damage=0.2, speed = 1)
+        self.boss = NPC("boss", nb_points = 1, damage=0.2, speed = 1.1)
+        self.boss1 = NPC("boss2", nb_points = 1, damage=0.2, speed = 1.2)
+        self.boss2 = NPC("boss2", nb_points = 1, damage=0.2, speed = 1.3)
+        self.boss3 = NPC("boss3", nb_points = 1, damage=0.2, speed = 1.4)
+        self.boss4 = NPC("boss4", nb_points = 1, damage=0.2, speed = 1.5)
+        self.boss5 = NPC("boss5", nb_points = 1, damage=0.2, speed = 1.6)
+        self.boss6 = NPC("boss6", nb_points = 1, damage=0.2, speed = 0.9)
+        self.boss7 = NPC("boss7", nb_points = 1, damage=0.2, speed = 0.8)
+        self.boss8 = NPC("boss8", nb_points = 1, damage=0.2, speed = 0.7)
 
         self.all_boss.append(self.boss)
         self.all_boss.append(self.boss1)
@@ -82,14 +98,132 @@ class MapManager:
                     dialog_box.execute(sprite.dialog)
                 if self.current_map == "zombie":
                     self.attack_player(sprite.name)
+            
+
+    def check_zombie_damage(self):
+
+        for sprite in self.get_group().sprites():
+            if sprite.feets.colliderect(self.player.rect) and type(sprite) is NPC and self.current_map =="zombie":
+                self.attack_zombie(sprite)
+                
+            elif sprite.position[0] < self.player.position[0] and (-0.9 > sprite.position[0] - self.player.position[0] or sprite.position[0] - self.player.position[0] > 0.9) and (-0.9 > sprite.position[1] - self.player.position[1] or sprite.position[1] - self.player.position[1] > 0.9) and sprite.position[1] < self.player.position[1] and self.current_map =="zombie":
+                self.move_right_zombie(sprite)
+                self.move_down_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "down")
+            elif sprite.position[0] > self.player.position[0] and (-0.9 > sprite.position[0] - self.player.position[0] or sprite.position[0] - self.player.position[0] > 0.9) and (-0.9 > sprite.position[1] - self.player.position[1] or sprite.position[1] - self.player.position[1] > 0.9) and sprite.position[1] < self.player.position[1] and self.current_map =="zombie":
+                self.move_left_zombie(sprite)
+                self.move_down_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "down")
+            elif sprite.position[0] < self.player.position[0] and (-0.9 > sprite.position[0] - self.player.position[0] or sprite.position[0] - self.player.position[0] > 0.9) and (-0.9 > sprite.position[1] - self.player.position[1] or sprite.position[1] - self.player.position[1] > 0.9) and sprite.position[1] > self.player.position[1] and self.current_map =="zombie":
+                self.move_right_zombie(sprite)
+                self.move_up_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "up")
+            elif sprite.position[0] > self.player.position[0] and (-0.9 > sprite.position[0] - self.player.position[0] or sprite.position[0] - self.player.position[0] > 0.9) and (-0.9 > sprite.position[1] - self.player.position[1] or sprite.position[1] - self.player.position[1] > 0.9) and sprite.position[1] > self.player.position[1] and self.current_map =="zombie":
+                self.move_left_zombie(sprite)
+                self.move_up_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "up")
+
+            elif sprite.position[0] < self.player.position[0] and -0.9 < sprite.position[1] - self.player.position[1] < 0.9 and self.current_map =="zombie":
+                self.move_right_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "right")
+            elif sprite.position[0] > self.player.position[0] and -0.9 < sprite.position[1] - self.player.position[1] < 0.9 and self.current_map =="zombie":
+                self.move_left_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "left")
+            elif sprite.position[1] < self.player.position[1] and self.current_map =="zombie":
+                self.move_down_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "down")
+            elif sprite.position[1] > self.player.position[1] and self.current_map =="zombie":
+                self.move_up_zombie(sprite)
+                AnimateSprite.change_animations(sprite, "up")
+                  
 
     def attack_player(self, name_zombie=""):
         for boss in self.all_boss:
             if boss.name == name_zombie:
                 boss.zombie_health -= self.player_damage
-                print(boss.zombie_health)
-            else:
-                pass
+                self.zombie_death(boss)
+                
+
+    def zombie_death(self, sprite):
+        if sprite.zombie_health <= 0:
+            sprite.position[0] = randint(80,700)
+            sprite.position[1] = randint(50,128)
+            sprite.zombie_health = self.zombie_health_max
+            sprite.zombie_clock = 0
+            self.score_up()
+
+    def score_up(self):
+        self.score += 1
+        self.points_competences()
+        self.upgrade_zombie()
+    
+    def points_competences(self):
+        self.points_compteur += 1
+        if self.points_compteur >= 10:
+            self.points_player += 1
+            self.points_compteur = 0
+
+    def up_damage(self):
+        if self.points_player >= 10:
+            self.player_damage += 5
+            self.points_player = self.points_player - 10
+
+    def up_health(self):
+        if self.points_player >= 7:
+            self.player_health_bonus += 50
+            self.player_health = 100 + self.player_health_bonus
+            self.player_health_max = self.player_health
+            self.points_player -= 7
+
+
+    def attack_zombie(self, sprite):
+        sprite.zombie_clock += 1
+
+        if sprite.zombie_clock >= 100:
+            self.player_health -= self.zombie_damage
+            sprite.zombie_clock = 0
+
+        if self.player_health <= 0:
+            self.player_death()
+            sprite.zombie_clock = 0
+
+    def player_death(self):
+        self.current_map = "carte"
+        self.teleport_player("spawn")
+
+        if self.score > self.score_max:
+            self.score_max = self.score
+
+        self.score = 0
+        self.points_player = 0
+        self.player_health = 100
+        self.player_health_bonus = 0
+        self.player_health_max = self.player_health
+        self.player_damage = 15   
+
+    def upgrade_zombie(self):
+        self.upgrade_compteur += 1
+        
+        if self.upgrade_compteur >= 100:
+            self.zombie_damage += 1
+            self.zombie_health_max += 20
+            
+
+    def move_right_zombie(self, sprite):
+        sprite.position[0] += sprite.zombie_speed
+        sprite.zombie_old_position = (sprite.position[0], sprite.position[1])
+    
+    def move_left_zombie(self, sprite):
+        sprite.position[0] -= sprite.zombie_speed
+        sprite.zombie_old_position = (sprite.position[0], sprite.position[1])
+    
+    def move_down_zombie(self, sprite):
+        sprite.position[1] += sprite.zombie_speed
+        sprite.zombie_old_position = (sprite.position[0], sprite.position[1])
+   
+    def move_up_zombie(self, sprite):
+        sprite.position[1] -= sprite.zombie_speed
+        sprite.zombie_old_position = (sprite.position[0], sprite.position[1])
 
     def check_collisions(self):
         #portails
@@ -106,13 +240,7 @@ class MapManager:
         #collisions
         for sprite in self.get_group().sprites():
             if sprite.feets.collidelist(self.get_collisions()) > -1:
-                sprite.move_back()
-
-            if type(sprite) is NPC:
-                if sprite.feets.colliderect(self.player.rect):
-                    sprite.speed = 0
-                else:
-                    sprite.speed = 1
+                sprite.move_back()            
 
     def teleport_player(self, name):
         point = self.get_object(name)

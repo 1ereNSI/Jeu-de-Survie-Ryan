@@ -67,7 +67,7 @@ class Player(Entity):
 
 class NPC(Entity):
 
-    def __init__(self, name, nb_points=0, dialog=[], health=100, damage=0, speed=0):
+    def __init__(self, name, nb_points=0, dialog=[], health=150, damage=0, speed=0):
         super().__init__(name, 0, 0)
         self.nb_points = nb_points
         self.dialog = dialog
@@ -77,6 +77,8 @@ class NPC(Entity):
         self.zombie_health = health
         self.zombie_damage = damage
         self.zombie_speed = speed
+        self.zombie_clock = 0
+        self.zombie_old_position = [0, 0]
 
     def teleport_spawn(self):
         location = self.points[self.current_point]

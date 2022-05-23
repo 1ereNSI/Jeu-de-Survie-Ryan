@@ -65,3 +65,45 @@ Tuto Graven (fini) : https://youtu.be/clcmhmpyYSc
 - Apparition des 10 zombies sur une troisième map (au nord)
 - Fonction pour faire des dégâts aux zombies faites
 - Correction graphique : on passe maintenant derrière les arbres / la maison
+
+# Commit 23/05/2022
+
+Plus aucune documentation
+
+== Code ==
+
+- Damage des zombies + mort des zombies + respawn des zombies aléatoirement en haut de map
+- Déplacement et animation des zombies
+- Damage du joueur + mort du joueur
+- Apparition du score
+- Apparition des points de competences
+- Apparition des améliorations de stats (vie et damage)
+- Affichage des données (points de vie, damage, score et score max)
+- Amélioration des zombies en fonction du score (-> Données)
+
+
+== Commades ==
+
+- Attaquer les zombies : espace
+- Dialogue des PNJ : espace
+- Amélioration de la vie : a
+- Amélioration des déâts : z
+- Déplacement : fleches
+
+== Données ==
+
+- 1 point de competence gagné tous les 10 zombies tués
+- 1 point de score par zombie tué
+- Score de l'amélioration des points de vie : 7 (+50) 
+- Score de l'amélioration des degats : 10 (+2)
+
+- Vie de base : 300
+- Dégâts de base : 15
+- Vitesse : 2
+- Amélioration de la vie : +50 et régéneration de la vie au max 
+- Amélioration des dégâts : 2
+
+- Vie de base des zombies : 150
+- Vitesse des zombies : de 0.7 à 1.6
+- Dégâts des zombies : 5 (attaque apres deux secondes de contact continu ou discontinu)
+- Amélioration des zombies tous les 100 de score : +1 damage et +20 vie
