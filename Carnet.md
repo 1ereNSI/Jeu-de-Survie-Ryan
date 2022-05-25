@@ -107,3 +107,10 @@ Plus aucune documentation
 - Vitesse des zombies : de 0.7 à 1.6
 - Dégâts des zombies : 5 (attaque apres deux secondes de contact continu ou discontinu)
 - Amélioration des zombies tous les 100 de score : +1 damage et +20 vie
+
+# Commit 24/05/2022
+
+== Code ==
+
+- Reset de la map "zombie" lors de la mort du joueur (replacement des zombies + retour aux stats de base)
+- 

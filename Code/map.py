@@ -3,8 +3,8 @@ from tokenize import Name
 from pip import main
 from animation import *
 from animation import AnimateSprite
-from player import NPC
 from player import *
+from player import NPC
 import pygame, pytmx, pyscroll
 from random import *
 
@@ -37,7 +37,7 @@ class MapManager:
         self.player_damage = 15
         self.zombie_damage = 5
         self.player_health_bonus = 0
-        self.player_health = 100
+        self.player_health = 200
         self.player_health_max = self.player_health
         self.zombie_speed = 1
         self.zombie_health_max = 150
@@ -98,7 +98,6 @@ class MapManager:
                     dialog_box.execute(sprite.dialog)
                 if self.current_map == "zombie":
                     self.attack_player(sprite.name)
-            
 
     def check_zombie_damage(self):
 
@@ -171,7 +170,7 @@ class MapManager:
     def up_health(self):
         if self.points_player >= 7:
             self.player_health_bonus += 50
-            self.player_health = 100 + self.player_health_bonus
+            self.player_health = 200 + self.player_health_bonus
             self.player_health_max = self.player_health
             self.points_player -= 7
 
@@ -196,10 +195,19 @@ class MapManager:
 
         self.score = 0
         self.points_player = 0
-        self.player_health = 100
+        self.player_health = 200
         self.player_health_bonus = 0
         self.player_health_max = self.player_health
-        self.player_damage = 15   
+        self.player_damage = 15  
+
+        self.zombie_damage = 5
+        self.zombie_health_max = 150  
+
+        for i in self.all_boss:
+            i.zombie_health = 150
+            i.teleport_spawn()
+            
+            
 
     def upgrade_zombie(self):
         self.upgrade_compteur += 1
